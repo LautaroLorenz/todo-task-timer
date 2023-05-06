@@ -15,6 +15,7 @@ import { InProgressPipe } from 'src/app/shared/pipes';
 })
 export class TaskListComponent extends CrudPageAbstract implements OnInit {
   tasks$ = new BehaviorSubject<Task[]>([]);
+  runningList$ = new BehaviorSubject<Task[]>([]);
 
   constructor(
     router: Router,
@@ -31,6 +32,21 @@ export class TaskListComponent extends CrudPageAbstract implements OnInit {
       take(1),
       tap((task) => this.tasks$.next(task)),
     ).subscribe();
+  }
+
+  canDeactivate() {
+    if (this.runningList$.value.length === 0) {
+      return true;
+    }
+    return this.dialog.open(ConfirmDialogComponent, {
+      data: {
+        message: 'Do you want to exit?',
+        secondMessage: 'There are task in progress',
+        confirmColor: 'warn',
+      }
+    }).afterClosed().pipe(
+      map((confirm) => !!confirm),
+    );
   }
 
   deleteTask(id: number) {
@@ -70,5 +86,15 @@ export class TaskListComponent extends CrudPageAbstract implements OnInit {
       return false;
     }
     return task.msSpent >= task.msToSpent;
+  }
+
+  addTaskToRunningList(running: boolean, task: Task) {
+    let runningList = this.runningList$.value.slice();
+    if (running) {
+      runningList = runningList.concat(task);
+    } else {
+      runningList = runningList.filter(({ id }) => task.id !== id);
+    }
+    this.runningList$.next(runningList);
   }
 }

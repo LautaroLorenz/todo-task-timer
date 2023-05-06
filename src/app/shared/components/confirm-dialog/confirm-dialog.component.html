@@ -1,5 +1,8 @@
 <div class="wrapper">
-  <p class="mat-subtitle-1">{{data.message}}</p>
+  <p class="mat-subtitle-1 message">{{data.message}}</p>
+  <ng-container *ngIf="data.secondMessage">
+    <p class="mat-subtitle-2">{{data.secondMessage}}</p>
+  </ng-container>
   <div class="actions">
     <button
       mat-button

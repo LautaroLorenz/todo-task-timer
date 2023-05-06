@@ -46,6 +46,7 @@
               [totalMs]="task.msToSpent"
               [initialMs]="task.msSpent"
               (stopChange)="taskTimerStop(task, $event)"
+              (runningChange)="addTaskToRunningList($event, task)"
             ></app-time-counter>
           </ng-container>
         </ng-template>

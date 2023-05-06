@@ -11,6 +11,7 @@ export class TimeCounterComponent implements OnInit, OnDestroy {
   @Input() totalMs!: number | null;
   @Input() initialMs!: number | null;
   @Output() stopChange = new EventEmitter<number>();
+  @Output() runningChange = new EventEmitter<boolean>();
 
   running$ = new BehaviorSubject<boolean>(false);
   progress$ = new BehaviorSubject<number>(0);
@@ -22,6 +23,7 @@ export class TimeCounterComponent implements OnInit, OnDestroy {
   constructor() {
     this.running$.pipe(
       takeUntil(this.onDestroy$),
+      tap((running) => this.runningChange.emit(running)),
     ).subscribe();
     this.progress$.pipe(
       takeUntil(this.onDestroy$),

@@ -45,8 +45,9 @@ export class TaskDetailComponent implements OnInit {
     }
     return this.dialog.open(ConfirmDialogComponent, {
       data: {
-        message: 'Do you want to exit? Unsaved changes will be lost',
-        confirmColor: 'primary',
+        message: 'Do you want to exit?',
+        secondMessage: 'Unsaved changes will be lost',
+        confirmColor: 'warn',
       }
     }).afterClosed().pipe(
       map((confirm) => !!confirm),
