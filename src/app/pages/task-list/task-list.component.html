@@ -1,0 +1,12 @@
+<p>Task List</p>
+<div>
+  <button (click)="openDetailPage()">Add new Task</button>
+</div>
+<ng-container *ngIf="(tasks$ | async) as tasks">
+  <ng-container *ngFor="let task of tasks">
+    <!-- <app-box
+      [title]="post.title"
+      (click)="openDetailPage(post.id)"
+    ></app-box> -->
+  </ng-container>
+</ng-container>
