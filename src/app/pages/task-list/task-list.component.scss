@@ -1,11 +1,22 @@
 button.add {
   position: fixed;
-  bottom: 7%;
-  right: 7%;
+  bottom: 4%;
+  right: 4%;
 }
 
-.item {
-  &:hover {
-    cursor: pointer;
+app-row-with-actions {
+  padding: 1em 2em;
+
+  .task-body {
+    display: flex;
+    flex-direction: column;
+
+    .task-title {
+      margin-bottom: 0;
+    }
+
+    .task-description {
+      font-weight: normal;
+    }
   }
 }

@@ -2,52 +2,19 @@
   "tasks": [
     {
       "id": 1,
+      "msStart": 1800000,
       "msLeft": 1800000,
       "priority": 1,
       "title": "Make this challenge",
-      "description": ""
+      "description": "Check the instrucctions list"
     },
     {
       "id": 2,
+      "msStart": 1800000,
       "msLeft": 1800000,
       "priority": 1,
-      "title": "Do paymentd ",
-      "description": "Pay per tick"
-    },
-    {
-      "id": 3,
-      "msLeft": null,
-      "priority": null,
-      "title": "New task editededd",
-      "description": null
-    },
-    {
-      "id": 4,
-      "msLeft": null,
-      "priority": null,
-      "title": " mi new tas ferwdd  d",
-      "description": null
-    },
-    {
-      "id": 5,
-      "msLeft": null,
-      "priority": null,
-      "title": "asddsf ",
-      "description": null
-    },
-    {
-      "id": 6,
-      "msLeft": null,
-      "priority": null,
-      "title": "asd",
-      "description": null
-    },
-    {
-      "id": 7,
-      "msLeft": null,
-      "priority": null,
-      "title": "asdasd",
-      "description": null
+      "title": "Do payment",
+      "description": "Pay with account money"
     }
   ]
 }

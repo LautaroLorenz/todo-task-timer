@@ -1,0 +1,15 @@
+<div class="wrapper">
+  <p class="mat-subtitle-1">{{data.message}}</p>
+  <div class="actions">
+    <button
+      mat-button
+      mat-dialog-close
+      cdkFocusInitial
+    >CANCEL</button>
+    <button
+      mat-button
+      color="warn"
+      [mat-dialog-close]="true"
+    >YES, CONFIRM</button>
+  </div>
+</div>

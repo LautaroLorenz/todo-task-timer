@@ -1,0 +1,16 @@
+.wrapper {
+  padding: 2em;
+
+  .actions {
+    display: flex;
+    flex: 1;
+    justify-content: flex-end;
+
+    button:not(:first-child) {
+      margin-left: 0.5em;
+    }
+    button:not(:last-child) {
+      margin-right: 0.5em;
+    }
+  }
+}

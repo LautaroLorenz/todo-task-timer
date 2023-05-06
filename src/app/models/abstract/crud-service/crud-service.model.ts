@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 
 
 export abstract class CrudServiceAbstract<T> {
-  private readonly apiUrl = 'http://localhost:3000/';
+  private readonly apiUrl = 'http://localhost:3000/'; // json-server url
   private baseUrl: string;
 
   constructor(
@@ -32,5 +32,10 @@ export abstract class CrudServiceAbstract<T> {
   postOne(item: T): Observable<T> {
     const endpoint = this.baseUrl;
     return this.httpClient.post<T>(endpoint, item);
+  }
+
+  deleteOne(id: number): Observable<T> {
+    const endpoint = this.baseUrl.concat('/').concat(id.toString());
+    return this.httpClient.delete<T>(endpoint);
   }
 }

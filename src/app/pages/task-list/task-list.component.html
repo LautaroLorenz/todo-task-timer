@@ -5,23 +5,52 @@
 </p>
 <p>
   <ng-container *ngIf="(tasks$ | async) as tasks">
-    <mat-list role="list">
-      <ng-container *ngFor="let task of tasks; let last=last">
-        <mat-list-item
-          role="listitem"
-          class="item"
-          matRipple
-          (click)="openDetailPage(task.id)"
-        >{{task.title}}</mat-list-item>
-        <mat-divider *ngIf="!last"></mat-divider>
-      </ng-container>
-    </mat-list>
+    <ng-container *ngFor="let task of tasks; let last=last">
+      <app-row-with-actions
+        [contentTemplate]="contentTemplate"
+        [actionsTemplate]="actionsTemplate"
+      >
+        <ng-template #contentTemplate>
+          <div class="task-body">
+            <span class="mat-subtitle-1 task-title">{{task.title}}</span>
+            <span
+              class="mat-subtitle-2 task-description">{{task.description}}</span>
+          </div>
+        </ng-template>
+        <ng-template #actionsTemplate>
+          <button
+            mat-icon-button
+            color="primary"
+            matTooltip="Remove task"
+            (click)="deleteTask(task.id)"
+          >
+            <mat-icon>delete</mat-icon>
+          </button>
+          <button
+            mat-icon-button
+            color="primary"
+            matTooltip="Edit task"
+            (click)="openDetailPage(task.id)"
+          >
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button
+            mat-icon-button
+            color="primary"
+            matTooltip="Start task"
+          >
+            <mat-icon>play_arrow</mat-icon>
+          </button>
+        </ng-template>
+      </app-row-with-actions>
+      <mat-divider *ngIf="!last"></mat-divider>
+    </ng-container>
   </ng-container>
 </p>
 <button
   class="add"
   mat-fab
-  color="primary"
+  color="accent"
   matTooltip="Add new task"
   matTooltipPosition="above"
   (click)="openDetailPage()"
