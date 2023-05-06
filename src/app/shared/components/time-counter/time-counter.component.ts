@@ -11,7 +11,6 @@ export class TimeCounterComponent implements OnInit, OnDestroy {
   @Input() totalMs!: number | null;
   @Input() initialMs!: number | null;
   @Output() stopChange = new EventEmitter<number>();
-  @Output() doneChange = new EventEmitter<void>();
 
   running$ = new BehaviorSubject<boolean>(false);
   progress$ = new BehaviorSubject<number>(0);
@@ -29,7 +28,6 @@ export class TimeCounterComponent implements OnInit, OnDestroy {
       tap((progress) => this.color$.next(progress < 80 ? 'primary' : 'accent')),
       tap((progress) => {
         if (progress >= 100) {
-          this.doneChange.emit();
           this.stopTimer();
         }
       }),

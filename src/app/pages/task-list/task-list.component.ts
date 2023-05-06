@@ -15,7 +15,6 @@ import { InProgressPipe } from 'src/app/shared/pipes';
 })
 export class TaskListComponent extends CrudPageAbstract implements OnInit {
   tasks$ = new BehaviorSubject<Task[]>([]);
-  doneList$ = new BehaviorSubject<Task[]>([]);
 
   constructor(
     router: Router,
@@ -63,13 +62,13 @@ export class TaskListComponent extends CrudPageAbstract implements OnInit {
     ).subscribe();
   }
 
-  addToDoneList(task: Task) {
-    let doneList = this.doneList$.value.slice();
-    doneList = doneList.concat(task);
-    this.doneList$.next(doneList);
-  }
-
-  inDoneList(task: Task) {
-    return !!this.doneList$.value.find(({ id }) => task.id === id);
+  isDone(task: Task) {
+    if (!task.msToSpent) {
+      return true;
+    }
+    if (!task.msSpent) {
+      return false;
+    }
+    return task.msSpent >= task.msToSpent;
   }
 }
