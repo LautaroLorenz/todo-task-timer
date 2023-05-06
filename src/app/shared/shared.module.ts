@@ -10,6 +10,11 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { CommonModule } from '@angular/common';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ConfirmDialogComponent, RowWithActionsComponent } from './components';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatSelectModule } from '@angular/material/select';
+import { PriorityPipe } from './pipes';
 
 @NgModule({
   imports: [
@@ -24,10 +29,15 @@ import { ConfirmDialogComponent, RowWithActionsComponent } from './components';
     MatRippleModule,
     MatSnackBarModule,
     MatDialogModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatGridListModule,
+    MatSelectModule,
   ],
   declarations: [
     RowWithActionsComponent,
     ConfirmDialogComponent,
+    PriorityPipe,
   ],
   exports: [
     CommonModule,
@@ -43,6 +53,11 @@ import { ConfirmDialogComponent, RowWithActionsComponent } from './components';
     RowWithActionsComponent,
     MatDialogModule,
     ConfirmDialogComponent,
+    MatFormFieldModule,
+    MatInputModule,
+    MatGridListModule,
+    MatSelectModule,
+    PriorityPipe,
   ]
 })
 export class SharedModule { }

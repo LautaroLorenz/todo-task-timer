@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { catchError, filter, map, of, switchMap, take, tap } from 'rxjs';
-import { TaskFormBuilder } from 'src/app/models';
+import { PriorityEnum, TaskFormBuilder } from 'src/app/models';
 import { TaskService } from 'src/app/services';
 import { MatSnackBar } from "@angular/material/snack-bar";
 
@@ -12,6 +12,7 @@ import { MatSnackBar } from "@angular/material/snack-bar";
 })
 export class TaskDetailComponent implements OnInit {
 
+  PRIORITY_ENUM = PriorityEnum;
   taskForm = TaskFormBuilder.create();
 
   get shouldSave() {

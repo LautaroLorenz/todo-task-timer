@@ -1,8 +1,6 @@
-<p>
-  <mat-toolbar>
-    <span>Task List</span>
-  </mat-toolbar>
-</p>
+<mat-toolbar>
+  <span>Task List</span>
+</mat-toolbar>
 <p>
   <ng-container *ngIf="(tasks$ | async) as tasks">
     <ng-container *ngFor="let task of tasks; let last=last">
@@ -15,6 +13,7 @@
             <span class="mat-subtitle-1 task-title">{{task.title}}</span>
             <span
               class="mat-subtitle-2 task-description">{{task.description}}</span>
+            <span>[{{task.priority | priority}}]</span>
           </div>
         </ng-template>
         <ng-template #actionsTemplate>

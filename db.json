@@ -6,15 +6,23 @@
       "msLeft": 1800000,
       "priority": 1,
       "title": "Make this challenge",
-      "description": "Check the instrucctions list"
+      "description": "Do your best"
     },
     {
       "id": 2,
       "msStart": 1800000,
       "msLeft": 1800000,
-      "priority": 1,
-      "title": "Do payment",
+      "priority": 3,
+      "title": "Do paymentd",
       "description": "Pay with account money"
+    },
+    {
+      "id": 3,
+      "msStart": 180000,
+      "msLeft": 180000,
+      "priority": 2,
+      "title": "Learn Qwik",
+      "description": "Find Qwik docs and read them"
     }
   ]
 }
