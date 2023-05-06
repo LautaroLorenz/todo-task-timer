@@ -27,7 +27,8 @@ export class TaskListComponent extends CrudPageAbstract {
   deleteTask(id: number) {
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
       data: {
-        message: 'Are you sure you want to delete this task?'
+        message: 'Are you sure you want to delete this task?',
+        confirmColor: 'warn',
       }
     });
     dialogRef.afterClosed().pipe(

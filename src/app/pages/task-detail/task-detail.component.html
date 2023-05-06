@@ -34,7 +34,7 @@
     <button
       mat-raised-button
       color="primary"
-      [disabled]="shouldSave"
+      [disabled]="!shouldSave"
       (click)="save()"
     >Save</button>
   </div>
