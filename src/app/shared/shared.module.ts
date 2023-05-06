@@ -18,19 +18,38 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatSelectModule } from '@angular/material/select';
-import { InProgressPipe, MsToMinPipe, PriorityPipe } from './pipes';
+import { MsToMinPipe, PriorityPipe } from './pipes';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatCardModule } from '@angular/material/card';
 
 const pipes = [
-
+  MsToMinPipe,
+  PriorityPipe,
 ];
 const components = [
-
+  RowWithActionsComponent,
+  ConfirmDialogComponent,
+  TimeCounterComponent,
 ];
 const material = [
-
+  MatCardModule,
+  MatListModule,
+  MatToolbarModule,
+  MatButtonModule,
+  MatIconModule,
+  MatTooltipModule,
+  MatRippleModule,
+  MatSnackBarModule,
+  MatDialogModule,
+  MatFormFieldModule,
+  MatInputModule,
+  MatGridListModule,
+  MatSelectModule,
+  MatProgressBarModule,
+  MatChipsModule,
+  MatProgressSpinnerModule,
 ];
 
 @NgModule({
@@ -38,60 +57,22 @@ const material = [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    MatListModule,
-    MatToolbarModule,
-    MatButtonModule,
-    MatIconModule,
-    MatTooltipModule,
-    MatRippleModule,
-    MatSnackBarModule,
-    MatDialogModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatGridListModule,
-    MatSelectModule,
-    MatProgressBarModule,
-    MatChipsModule,
-    MatProgressSpinnerModule,
+    ...material,
   ],
   declarations: [
-    RowWithActionsComponent,
-    ConfirmDialogComponent,
-    PriorityPipe,
-    InProgressPipe,
-    MsToMinPipe,
-    TimeCounterComponent,
+    ...pipes,
+    ...components,
   ],
   exports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    MatListModule,
-    MatToolbarModule,
-    MatButtonModule,
-    MatIconModule,
-    MatTooltipModule,
-    MatRippleModule,
-    MatSnackBarModule,
-    RowWithActionsComponent,
-    MatDialogModule,
-    ConfirmDialogComponent,
-    MatFormFieldModule,
-    MatInputModule,
-    MatGridListModule,
-    MatSelectModule,
-    PriorityPipe,
-    InProgressPipe,
-    MsToMinPipe,
-    MatProgressBarModule,
-    MatChipsModule,
-    TimeCounterComponent,
-    MatProgressSpinnerModule,
+    ...pipes,
+    ...material,
+    ...components,
   ],
   providers: [
-    MsToMinPipe,
-    PriorityPipe,
-    InProgressPipe,
+    ...pipes,
   ]
 })
 export class SharedModule { }

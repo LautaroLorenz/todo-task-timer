@@ -6,7 +6,6 @@ import { TaskService } from 'src/app/services';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogComponent } from 'src/app/shared/components';
 import { MatSnackBar } from "@angular/material/snack-bar";
-import { InProgressPipe } from 'src/app/shared/pipes';
 
 @Component({
   selector: 'app-task-list',
@@ -22,7 +21,6 @@ export class TaskListComponent extends CrudPageAbstract implements OnInit {
     private taskSv: TaskService,
     private dialog: MatDialog,
     private snackBar: MatSnackBar,
-    private inPogressPipe: InProgressPipe,
   ) {
     super(router, TaskEntity);
   }
@@ -72,7 +70,7 @@ export class TaskListComponent extends CrudPageAbstract implements OnInit {
     task.msSpent = currentMs;
     this.taskSv.putOne(task.id, task).pipe(
       take(1),
-      map(() => this.inPogressPipe.transform(task) ? 'Task progress updated' : 'Task Finished'),
+      map(() => this.isDone(task) ? 'Task Finished' : 'Task progress updated'),
       tap((feedback) => this.snackBar.open(feedback, 'Ok', { duration: 3000 })),
       catchError(() => of(alert("Ups! Can't save time progress"))),
     ).subscribe();
