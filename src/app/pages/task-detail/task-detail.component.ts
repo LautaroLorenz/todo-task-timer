@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { catchError, filter, of, switchMap, take, tap } from 'rxjs';
+import { catchError, filter, map, of, switchMap, take, tap } from 'rxjs';
 import { TaskFormBuilder } from 'src/app/models';
 import { TaskService } from 'src/app/services';
+import { MatSnackBar } from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-task-detail',
@@ -21,13 +22,8 @@ export class TaskDetailComponent implements OnInit {
     private route: ActivatedRoute,
     private taskSv: TaskService,
     private router: Router,
+    private snackBar: MatSnackBar,
   ) { }
-
-  private reloadPage(id: number) {
-    this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
-      this.router.navigate(['task-detail', id]);
-    });
-  }
 
   ngOnInit(): void {
     this.route.params.pipe(
@@ -42,17 +38,20 @@ export class TaskDetailComponent implements OnInit {
   save() {
     const item = this.taskForm.getRawValue();
     const { id } = item;
+
+    // it's must be a "iif" rxjs operator (but it doesn't work well)
     const operation$ = !!Number(id) ?
       this.taskSv.putOne(item.id, item).pipe(
-        tap(() => alert('Edited')),
+        map(() => 'Successfully Edited'),
       ) :
       this.taskSv.postOne(item).pipe(
-        tap(() => alert('Created')),
+        map(() => 'Successfully Created'),
       );
 
     operation$.pipe(
       take(1),
-      tap(({ id }) => this.reloadPage(id)),
+      tap((feedback) => this.snackBar.open(feedback, 'Ok', { duration: 5000 })),
+      tap(() => this.router.navigate(['task-list'])),
       catchError(() => of(alert("Ups! Can't save"))),
     ).subscribe();
   }

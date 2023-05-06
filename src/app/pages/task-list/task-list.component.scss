@@ -1,0 +1,11 @@
+button.add {
+  position: fixed;
+  bottom: 7%;
+  right: 7%;
+}
+
+.item {
+  &:hover {
+    cursor: pointer;
+  }
+}

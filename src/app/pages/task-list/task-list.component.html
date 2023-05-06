@@ -1,12 +1,30 @@
-<p>Task List</p>
-<div>
-  <button (click)="openDetailPage()">Add new Task</button>
-</div>
-<ng-container *ngIf="(tasks$ | async) as tasks">
-  <ng-container *ngFor="let task of tasks">
-    <!-- <app-box
-      [title]="post.title"
-      (click)="openDetailPage(post.id)"
-    ></app-box> -->
+<p>
+  <mat-toolbar>
+    <span>Task List</span>
+  </mat-toolbar>
+</p>
+<p>
+  <ng-container *ngIf="(tasks$ | async) as tasks">
+    <mat-list role="list">
+      <ng-container *ngFor="let task of tasks; let last=last">
+        <mat-list-item
+          role="listitem"
+          class="item"
+          matRipple
+          (click)="openDetailPage(task.id)"
+        >{{task.title}}</mat-list-item>
+        <mat-divider *ngIf="!last"></mat-divider>
+      </ng-container>
+    </mat-list>
   </ng-container>
-</ng-container>
+</p>
+<button
+  class="add"
+  mat-fab
+  color="primary"
+  matTooltip="Add new task"
+  matTooltipPosition="above"
+  (click)="openDetailPage()"
+>
+  <mat-icon>add</mat-icon>
+</button>
