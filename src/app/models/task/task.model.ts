@@ -9,8 +9,8 @@ export const TaskEntity: Entity = {
 
 export interface Task {
   id: number;
-  msStart: number | null; // I assume that in a real scenario it could be different depending on the task
-  msLeft: number | null;
+  readonly msToSpent: number | null; // I assume that in a real scenario it could be different depending on the task
+  msSpent: number | null;
   priority: PriorityEnum | null;
   title: string | null;
   description: string | null;
@@ -18,8 +18,8 @@ export interface Task {
 
 export type TaskForm = FormGroup<{
   id: FormControl<number>;
-  msStart: FormControl<number | null>;
-  msLeft: FormControl<number | null>;
+  msToSpent: FormControl<number | null>;
+  msSpent: FormControl<number | null>;
   priority: FormControl<PriorityEnum | null>;
   title: FormControl<string | null>;
   description: FormControl<string | null>;
@@ -31,8 +31,8 @@ export class TaskFormBuilder {
   static create(): TaskForm {
     return new FormGroup({
       id: new FormControl(),
-      msStart: new FormControl<number | null>(this.START_MS, Validators.required),
-      msLeft: new FormControl<number | null>(this.START_MS, Validators.required),
+      msToSpent: new FormControl<number | null>(this.START_MS, [Validators.required]),
+      msSpent: new FormControl<number | null>(0, Validators.required),
       priority: new FormControl<PriorityEnum | null>(null, Validators.required),
       title: new FormControl<string | null>(null, Validators.required),
       description: new FormControl(),

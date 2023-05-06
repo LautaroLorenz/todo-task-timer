@@ -57,7 +57,6 @@ export class TaskDetailComponent implements OnInit {
     const item = this.taskForm.getRawValue();
     const { id } = item;
 
-    // it's must be a "iif" rxjs operator (but it doesn't work well)
     const operation$ = !!Number(id) ?
       this.taskSv.putOne(item.id, item).pipe(
         map(() => 'Successfully Edited'),

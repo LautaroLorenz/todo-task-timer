@@ -10,10 +10,16 @@
       >
         <ng-template #contentTemplate>
           <div class="task-body">
-            <span class="mat-subtitle-1 task-title">{{task.title}}</span>
-            <span
-              class="mat-subtitle-2 task-description">{{task.description}}</span>
             <span>[{{task.priority | priority}}]</span>
+            <span class="mat-subtitle-1 task-title">
+              <span class="mat-caption">
+                (Spent {{task.msSpent | msToMin}} Min)
+              </span>
+              <span>{{task.title}}</span>
+            </span>
+            <span class="mat-subtitle-2 task-description">
+              {{task.description}}
+            </span>
           </div>
         </ng-template>
         <ng-template #actionsTemplate>
@@ -32,13 +38,6 @@
             (click)="openDetailPage(task.id)"
           >
             <mat-icon>edit</mat-icon>
-          </button>
-          <button
-            mat-icon-button
-            color="primary"
-            matTooltip="Start task"
-          >
-            <mat-icon>play_arrow</mat-icon>
           </button>
         </ng-template>
       </app-row-with-actions>

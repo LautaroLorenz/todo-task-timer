@@ -14,7 +14,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatSelectModule } from '@angular/material/select';
-import { PriorityPipe } from './pipes';
+import { InProgressPipe, MsToMinPipe, PriorityPipe } from './pipes';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 @NgModule({
   imports: [
@@ -33,11 +34,14 @@ import { PriorityPipe } from './pipes';
     MatInputModule,
     MatGridListModule,
     MatSelectModule,
+    MatProgressBarModule,
   ],
   declarations: [
     RowWithActionsComponent,
     ConfirmDialogComponent,
     PriorityPipe,
+    InProgressPipe,
+    MsToMinPipe,
   ],
   exports: [
     CommonModule,
@@ -58,6 +62,9 @@ import { PriorityPipe } from './pipes';
     MatGridListModule,
     MatSelectModule,
     PriorityPipe,
+    InProgressPipe,
+    MsToMinPipe,
+    MatProgressBarModule,
   ]
 })
 export class SharedModule { }

@@ -2,27 +2,35 @@
   "tasks": [
     {
       "id": 1,
-      "msStart": 1800000,
-      "msLeft": 1800000,
+      "msToSpent": 1800000,
+      "msSpent": 0,
       "priority": 1,
       "title": "Make this challenge",
       "description": "Do your best"
     },
     {
       "id": 2,
-      "msStart": 1800000,
-      "msLeft": 1800000,
-      "priority": 3,
+      "msToSpent": 1800000,
+      "msSpent": 50000,
+      "priority": 2,
       "title": "Do paymentd",
       "description": "Pay with account money"
     },
     {
       "id": 3,
-      "msStart": 180000,
-      "msLeft": 180000,
-      "priority": 2,
+      "msToSpent": 1800000,
+      "msSpent": 1800000,
+      "priority": 1,
       "title": "Learn Qwik",
       "description": "Find Qwik docs and read them"
+    },
+    {
+      "id": 4,
+      "msToSpent": 1800000,
+      "msSpent": 1600000,
+      "priority": 2,
+      "title": "Learn React",
+      "description": "Find React docs and see them"
     }
   ]
 }

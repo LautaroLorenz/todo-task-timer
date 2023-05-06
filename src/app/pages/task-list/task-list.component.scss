@@ -1,22 +1,30 @@
-button.add {
-  position: fixed;
-  bottom: 4%;
-  right: 4%;
-}
-
 app-row-with-actions {
   padding: 1em 2em;
 
   .task-body {
     display: flex;
+    flex: 1;
     flex-direction: column;
 
     .task-title {
+      display: flex;
+      flex: 1;
       margin-bottom: 0;
+      align-items: center;
+
+      span:not(:last-child) {
+        margin-right: 0.5em;
+      }
     }
 
     .task-description {
       font-weight: normal;
     }
   }
+}
+
+button.add {
+  position: fixed;
+  bottom: 4%;
+  right: 4%;
 }
