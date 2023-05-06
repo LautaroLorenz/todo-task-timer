@@ -9,13 +9,29 @@ import { MatRippleModule } from '@angular/material/core';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { CommonModule } from '@angular/common';
 import { MatDialogModule } from '@angular/material/dialog';
-import { ConfirmDialogComponent, RowWithActionsComponent } from './components';
+import {
+  ConfirmDialogComponent,
+  RowWithActionsComponent,
+  TimeCounterComponent
+} from './components';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatSelectModule } from '@angular/material/select';
 import { InProgressPipe, MsToMinPipe, PriorityPipe } from './pipes';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+
+const pipes = [
+
+];
+const components = [
+
+];
+const material = [
+
+];
 
 @NgModule({
   imports: [
@@ -35,6 +51,8 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
     MatGridListModule,
     MatSelectModule,
     MatProgressBarModule,
+    MatChipsModule,
+    MatProgressSpinnerModule,
   ],
   declarations: [
     RowWithActionsComponent,
@@ -42,6 +60,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
     PriorityPipe,
     InProgressPipe,
     MsToMinPipe,
+    TimeCounterComponent,
   ],
   exports: [
     CommonModule,
@@ -65,6 +84,14 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
     InProgressPipe,
     MsToMinPipe,
     MatProgressBarModule,
+    MatChipsModule,
+    TimeCounterComponent,
+    MatProgressSpinnerModule,
+  ],
+  providers: [
+    MsToMinPipe,
+    PriorityPipe,
+    InProgressPipe,
   ]
 })
 export class SharedModule { }

@@ -8,9 +8,11 @@ app-row-with-actions {
 
     .task-title {
       display: flex;
+      flex-direction: row;
       flex: 1;
       margin-bottom: 0;
       align-items: center;
+      flex-wrap: wrap;
 
       span:not(:last-child) {
         margin-right: 0.5em;

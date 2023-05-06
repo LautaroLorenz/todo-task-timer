@@ -26,7 +26,7 @@ export type TaskForm = FormGroup<{
 }>;
 
 export class TaskFormBuilder {
-  static readonly START_MS = 180000; // 30 min
+  static readonly START_MS = 1800000; // 30 min
 
   static create(): TaskForm {
     return new FormGroup({

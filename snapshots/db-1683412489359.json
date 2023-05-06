@@ -3,7 +3,7 @@
     {
       "id": 1,
       "msToSpent": 1800000,
-      "msSpent": 46000,
+      "msSpent": 1792000,
       "priority": 1,
       "title": "Make this challenge",
       "description": "Do your best"
@@ -11,7 +11,7 @@
     {
       "id": 2,
       "msToSpent": 1800000,
-      "msSpent": 523000,
+      "msSpent": 1791000,
       "priority": 2,
       "title": "Do paymentd",
       "description": "Pay with account money"
@@ -19,7 +19,7 @@
     {
       "id": 3,
       "msToSpent": 1800000,
-      "msSpent": 1800000,
+      "msSpent": 1795000,
       "priority": 2,
       "title": "Learn Qwik",
       "description": "Find Qwik docs and read them"
@@ -27,7 +27,7 @@
     {
       "id": 4,
       "msToSpent": 1800000,
-      "msSpent": 1800000,
+      "msSpent": 1797000,
       "priority": 2,
       "title": "Learn React",
       "description": "Find React docs and see them"
@@ -35,7 +35,7 @@
     {
       "id": 5,
       "msToSpent": 1800000,
-      "msSpent": 1474000,
+      "msSpent": 1799000,
       "priority": 2,
       "title": "Find a new car",
       "description": "Look at the store on the end of the street."

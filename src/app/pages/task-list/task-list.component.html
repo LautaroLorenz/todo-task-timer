@@ -11,34 +11,46 @@
         <ng-template #contentTemplate>
           <div class="task-body">
             <span>[{{task.priority | priority}}]</span>
-            <span class="mat-subtitle-1 task-title">
+            <div class="mat-subtitle-1 task-title">
               <span class="mat-caption">
-                (Spent {{task.msSpent | msToMin}} Min)
+                ({{task.msSpent | msToMin}}/{{task.msToSpent | msToMin}} Min)
               </span>
               <span>{{task.title}}</span>
-            </span>
+            </div>
             <span class="mat-subtitle-2 task-description">
               {{task.description}}
             </span>
           </div>
         </ng-template>
         <ng-template #actionsTemplate>
-          <button
-            mat-icon-button
-            color="primary"
-            matTooltip="Remove task"
-            (click)="deleteTask(task.id)"
-          >
-            <mat-icon>delete</mat-icon>
-          </button>
-          <button
-            mat-icon-button
-            color="primary"
-            matTooltip="Edit task"
-            (click)="openDetailPage(task.id)"
-          >
-            <mat-icon>edit</mat-icon>
-          </button>
+          <div>
+            <button
+              mat-icon-button
+              color="primary"
+              matTooltip="Remove task"
+              (click)="deleteTask(task.id)"
+            >
+              <mat-icon>delete</mat-icon>
+            </button>
+            <button
+              mat-icon-button
+              color="primary"
+              matTooltip="Edit task"
+              (click)="openDetailPage(task.id)"
+            >
+              <mat-icon>edit</mat-icon>
+            </button>
+          </div>
+          <ng-container *ngIf="!inDoneList(task)">
+            <ng-container *ngIf="(task | inProgress)">
+              <app-time-counter
+                [totalMs]="task.msToSpent"
+                [initialMs]="task.msSpent"
+                (stopChange)="taskTimerStop(task, $event)"
+                (doneChange)="addToDoneList(task)"
+              ></app-time-counter>
+            </ng-container>
+          </ng-container>
         </ng-template>
       </app-row-with-actions>
       <mat-divider *ngIf="!last"></mat-divider>
