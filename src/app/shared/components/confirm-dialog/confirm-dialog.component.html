@@ -1,0 +1,18 @@
+<div class="wrapper">
+  <p class="mat-subtitle-1 message">{{data.message}}</p>
+  <ng-container *ngIf="data.secondMessage">
+    <p class="mat-subtitle-2">{{data.secondMessage}}</p>
+  </ng-container>
+  <div class="actions">
+    <button
+      mat-button
+      mat-dialog-close
+      cdkFocusInitial
+    >CANCEL</button>
+    <button
+      mat-button
+      [color]="data.confirmColor"
+      [mat-dialog-close]="true"
+    >YES, CONFIRM</button>
+  </div>
+</div>

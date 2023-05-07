@@ -1,0 +1,14 @@
+:host {
+  display: flex;
+  flex-direction: row;
+}
+
+.content {
+  display: flex;
+  flex: 1;
+}
+
+.actions {
+  display: flex;
+  flex-direction: row;
+}

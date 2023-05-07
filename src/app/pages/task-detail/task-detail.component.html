@@ -1,0 +1,41 @@
+<mat-toolbar>
+  <span>Task Detail</span>
+</mat-toolbar>
+<form [formGroup]="taskForm">
+  <div>
+    <mat-form-field appearance="fill">
+      <mat-label>Title</mat-label>
+      <input
+        matInput
+        formControlName="title"
+      >
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field appearance="fill">
+      <mat-label>Description</mat-label>
+      <textarea
+        matInput
+        formControlName="description"
+      ></textarea>
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field appearance="fill">
+      <mat-label>Priority</mat-label>
+      <mat-select formControlName="priority">
+        <mat-option [value]="PRIORITY_ENUM.LOW">{{ PRIORITY_ENUM.LOW | priority }}</mat-option>
+        <mat-option [value]="PRIORITY_ENUM.MEDIUM">{{ PRIORITY_ENUM.MEDIUM | priority }}</mat-option>
+        <mat-option [value]="PRIORITY_ENUM.HIGH">{{ PRIORITY_ENUM.HIGH | priority }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div>
+    <button
+      mat-raised-button
+      color="primary"
+      [disabled]="!shouldSave"
+      (click)="save()"
+    >Save</button>
+  </div>
+</form>

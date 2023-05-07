@@ -1,0 +1,22 @@
+.wrapper {
+  min-width: 50vw;
+  padding: 2em;
+
+  .message {
+    margin-bottom: 0;
+  }
+
+  .actions {
+    display: flex;
+    flex: 1;
+    justify-content: flex-end;
+    margin-top: 1em;
+
+    button:not(:first-child) {
+      margin-left: 0.5em;
+    }
+    button:not(:last-child) {
+      margin-right: 0.5em;
+    }
+  }
+}

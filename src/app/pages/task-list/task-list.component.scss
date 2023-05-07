@@ -1,0 +1,47 @@
+.search {
+  display: flex;
+}
+
+app-row-with-actions {
+  padding: 1em 2em;
+  border-bottom: 1px solid #e6e6e6;
+
+  .task-body {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+
+    .task-title {
+      display: flex;
+      flex-direction: row;
+      flex: 1;
+      margin-bottom: 0;
+      align-items: center;
+      flex-wrap: wrap;
+
+      span:not(:last-child) {
+        margin-right: 0.5em;
+      }
+    }
+
+    .task-description {
+      font-weight: normal;
+    }
+  }
+
+  &.hidden {
+    visibility: hidden;
+    width: 0;
+    height: 0;
+    padding: 0;
+    margin: 0;
+    pointer-events: none;
+    user-select: none;
+  }
+}
+
+button.add {
+  position: fixed;
+  bottom: 4%;
+  right: 4%;
+}

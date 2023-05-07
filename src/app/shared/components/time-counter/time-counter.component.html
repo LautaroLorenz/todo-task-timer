@@ -1,0 +1,31 @@
+<ng-container *ngIf="(running$ | async); else stoppedTmp">
+  <div class="time-progress">
+    <mat-progress-spinner
+      matRipple
+      mode="determinate"
+      diameter="48"
+      [color]="color$ | async"
+      [value]="progress$ | async"
+    >
+    </mat-progress-spinner>
+    <button
+     class="stop-button"
+      mat-icon-button
+      color="primary"
+      matTooltip="Stop timer"
+      (click)="stopTimer()"
+    >
+      <mat-icon>pause</mat-icon>
+    </button>
+  </div>
+</ng-container>
+<ng-template #stoppedTmp>
+  <button
+    mat-icon-button
+    color="primary"
+    matTooltip="Start timer"
+    (click)="startTimer()"
+  >
+    <mat-icon>play_arrow</mat-icon>
+  </button>
+</ng-template>
