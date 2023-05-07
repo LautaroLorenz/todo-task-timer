@@ -1,20 +1,25 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { BehaviorSubject, catchError, filter, map, of, switchMap, take, tap } from 'rxjs';
+import { BehaviorSubject, Subject, catchError, debounceTime, filter, map, of, switchMap, take, takeUntil, tap } from 'rxjs';
 import { CrudPageAbstract, Task, TaskEntity } from 'src/app/models';
 import { TaskService } from 'src/app/services';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogComponent } from 'src/app/shared/components';
 import { MatSnackBar } from "@angular/material/snack-bar";
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-task-list',
   templateUrl: './task-list.component.html',
   styleUrls: ['./task-list.component.scss']
 })
-export class TaskListComponent extends CrudPageAbstract implements OnInit {
+export class TaskListComponent extends CrudPageAbstract implements OnInit, OnDestroy {
   tasks$ = new BehaviorSubject<Task[]>([]);
   runningList$ = new BehaviorSubject<Task[]>([]);
+  filterList$ = new BehaviorSubject<Task[]>([]);
+  search = new FormControl();
+
+  private readonly onDestroy$ = new Subject<void>();
 
   constructor(
     router: Router,
@@ -29,6 +34,11 @@ export class TaskListComponent extends CrudPageAbstract implements OnInit {
     this.taskSv.getAll().pipe(
       take(1),
       tap((task) => this.tasks$.next(task)),
+    ).subscribe();
+    this.search.valueChanges.pipe(
+      takeUntil(this.onDestroy$),
+      debounceTime(350),
+      tap((text) => this.filterList(text)),
     ).subscribe();
   }
 
@@ -45,6 +55,14 @@ export class TaskListComponent extends CrudPageAbstract implements OnInit {
     }).afterClosed().pipe(
       map((confirm) => !!confirm),
     );
+  }
+
+  filterList(text: string) {
+    const toSearch = text.toLowerCase();
+    const filtered = this.tasks$.value.filter((task) => {
+      return `${task.title?.toLowerCase()}${task.description?.toLowerCase()}`.includes(toSearch);
+    });
+    this.filterList$.next(filtered);
   }
 
   deleteTask(id: number) {
@@ -94,5 +112,14 @@ export class TaskListComponent extends CrudPageAbstract implements OnInit {
       runningList = runningList.filter(({ id }) => task.id !== id);
     }
     this.runningList$.next(runningList);
+  }
+
+  isFiltered(task: Task): boolean {
+    return this.filterList$.value.some(({ id }) => task.id === id);
+  }
+
+  ngOnDestroy(): void {
+    this.onDestroy$.next();
+    this.onDestroy$.complete();
   }
 }

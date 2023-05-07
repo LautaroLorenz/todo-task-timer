@@ -2,9 +2,21 @@
   <span>Task List</span>
 </mat-toolbar>
 <p>
+  <mat-form-field appearance="outline" class="search">
+    <mat-label>Search</mat-label>
+    <input
+      matInput
+      placeholder="Search by title and description"
+      [formControl]="search"
+    >
+    <mat-icon matSuffix>search</mat-icon>
+  </mat-form-field>
+</p>
+<p>
   <ng-container *ngIf="(tasks$ | async) as tasks">
     <ng-container *ngFor="let task of tasks; let last=last">
       <app-row-with-actions
+        [class.hidden]="!isFiltered(task)"
         [contentTemplate]="contentTemplate"
         [actionsTemplate]="actionsTemplate"
       >
@@ -51,7 +63,6 @@
           </ng-container>
         </ng-template>
       </app-row-with-actions>
-      <mat-divider *ngIf="!last"></mat-divider>
     </ng-container>
   </ng-container>
 </p>

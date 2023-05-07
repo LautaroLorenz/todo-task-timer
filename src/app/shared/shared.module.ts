@@ -24,6 +24,11 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatCardModule } from '@angular/material/card';
 
+const commons = [
+  CommonModule,
+  FormsModule,
+  ReactiveFormsModule,
+];
 const pipes = [
   MsToMinPipe,
   PriorityPipe,
@@ -54,9 +59,7 @@ const material = [
 
 @NgModule({
   imports: [
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
+    ...commons,
     ...material,
   ],
   declarations: [
@@ -64,9 +67,7 @@ const material = [
     ...components,
   ],
   exports: [
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
+    ...commons,
     ...pipes,
     ...material,
     ...components,
