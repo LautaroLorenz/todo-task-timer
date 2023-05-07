@@ -2,7 +2,10 @@
   <span>Task List</span>
 </mat-toolbar>
 <p>
-  <mat-form-field appearance="outline" class="search">
+  <mat-form-field
+    appearance="outline"
+    class="search"
+  >
     <mat-label>Search</mat-label>
     <input
       matInput
@@ -12,60 +15,58 @@
     <mat-icon matSuffix>search</mat-icon>
   </mat-form-field>
 </p>
-<p>
-  <ng-container *ngIf="(tasks$ | async) as tasks">
-    <ng-container *ngFor="let task of tasks; let last=last">
-      <app-row-with-actions
-        [class.hidden]="!isFiltered(task)"
-        [contentTemplate]="contentTemplate"
-        [actionsTemplate]="actionsTemplate"
-      >
-        <ng-template #contentTemplate>
-          <div class="task-body">
-            <span>[{{task.priority | priority}}]</span>
-            <div class="mat-subtitle-1 task-title">
-              <span class="mat-caption">
-                ({{task.msSpent | msToMin}}/{{task.msToSpent | msToMin}} Min)
-              </span>
-              <span>{{task.title}}</span>
-            </div>
-            <span class="mat-subtitle-2 task-description">
-              {{task.description}}
+<ng-container *ngIf="(tasks$ | async) as tasks">
+  <ng-container *ngFor="let task of tasks; let last=last">
+    <app-row-with-actions
+      [class.hidden]="isFiltered(task)"
+      [contentTemplate]="contentTemplate"
+      [actionsTemplate]="actionsTemplate"
+    >
+      <ng-template #contentTemplate>
+        <div class="task-body">
+          <span>[{{task.priority | priority}}]</span>
+          <div class="mat-subtitle-1 task-title">
+            <span class="mat-caption">
+              ({{task.msSpent | msToMin}}/{{task.msToSpent | msToMin}} Min)
             </span>
+            <span>{{task.title}}</span>
           </div>
-        </ng-template>
-        <ng-template #actionsTemplate>
-          <div>
-            <button
-              mat-icon-button
-              color="primary"
-              matTooltip="Remove task"
-              (click)="deleteTask(task.id)"
-            >
-              <mat-icon>delete</mat-icon>
-            </button>
-            <button
-              mat-icon-button
-              color="primary"
-              matTooltip="Edit task"
-              (click)="openDetailPage(task.id)"
-            >
-              <mat-icon>edit</mat-icon>
-            </button>
-          </div>
-          <ng-container *ngIf="!isDone(task)">
-            <app-time-counter
-              [totalMs]="task.msToSpent"
-              [initialMs]="task.msSpent"
-              (stopChange)="taskTimerStop(task, $event)"
-              (runningChange)="addTaskToRunningList($event, task)"
-            ></app-time-counter>
-          </ng-container>
-        </ng-template>
-      </app-row-with-actions>
-    </ng-container>
+          <span class="mat-subtitle-2 task-description">
+            {{task.description}}
+          </span>
+        </div>
+      </ng-template>
+      <ng-template #actionsTemplate>
+        <div>
+          <button
+            mat-icon-button
+            color="primary"
+            matTooltip="Remove task"
+            (click)="deleteTask(task.id)"
+          >
+            <mat-icon>delete</mat-icon>
+          </button>
+          <button
+            mat-icon-button
+            color="primary"
+            matTooltip="Edit task"
+            (click)="openDetailPage(task.id)"
+          >
+            <mat-icon>edit</mat-icon>
+          </button>
+        </div>
+        <ng-container *ngIf="!isDone(task)">
+          <app-time-counter
+            [totalMs]="task.msToSpent"
+            [initialMs]="task.msSpent"
+            (stopChange)="taskTimerStop(task, $event)"
+            (runningChange)="addTaskToRunningList($event, task)"
+          ></app-time-counter>
+        </ng-container>
+      </ng-template>
+    </app-row-with-actions>
   </ng-container>
-</p>
+</ng-container>
 <button
   class="add"
   mat-fab

@@ -57,10 +57,12 @@ export class TaskListComponent extends CrudPageAbstract implements OnInit, OnDes
     );
   }
 
+  // The filtered list is used to keep the tasks running while search 
+  // in a real scenario a service could be used to make it more optimal.
   filterList(text: string) {
     const toSearch = text.toLowerCase();
     const filtered = this.tasks$.value.filter((task) => {
-      return `${task.title?.toLowerCase()}${task.description?.toLowerCase()}`.includes(toSearch);
+      return !`${task.title?.toLowerCase()}${task.description?.toLowerCase()}`.includes(toSearch);
     });
     this.filterList$.next(filtered);
   }
